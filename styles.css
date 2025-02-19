@@ -1,0 +1,76 @@
+@font-face {
+    font-family: 'DIN Pro';
+    src: url('dinpro.woff2') format('woff2'),
+         url('dinpro.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'DIN Pro', sans-serif;
+    background-image: url('https://i.postimg.cc/W4KxBmgY/VIER-PFOTEN-2024-10-22-00012.jpg'); /* Replace with your actual image URL */
+    background-size: cover;  /* Cover the entire screen */
+    background-position: center;  /* Center the image */
+    background-repeat: no-repeat;  /* Prevent repeating */
+    background-attachment: local; /* Keep it fixed when scrolling */
+    margin: 0;
+    padding: 0;
+}
+
+.register-container {
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.register-container h1 {
+    color: #2e7d32;
+    font-weight: bold;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+input {
+    width: calc(100% - 20px); /* Adjust width to fit within the container */
+    max-width: 360px; /* Ensure it doesn't overflow */
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+button {
+    width: 299px;
+    padding: 12px;
+    margin-top: 15px;
+    background: #2e7d32;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 20px;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #1b5e20;
+}
+.mnlogo {
+    width: 300px;  /* Adjust width */
+    height: auto;  /* Maintain aspect ratio */
+    display: block;
+    margin: 20px auto; /* Center the image */
+}

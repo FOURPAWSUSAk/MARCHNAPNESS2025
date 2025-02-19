@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register for March Napness</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <img src="logo-EN_CMYK_claim-left_white-bold (1).png" 
+         style="width: 300px; height: auto; position: absolute; right: 20px; top: 20px;" 
+         alt="Logo">
+    <div class="register-container">
+        <h1>Register for March Napness 2025</h1>
+        <form id="registerForm">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" required>
+
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" required>
+
+            <button type="submit">Register</button>
+            <img src="111111.png" alt="logo" class="mnlogo"/>
+            <a href="https://www.fourpawsusa.org/about-us/data-privacy">Privacy Policy</a>
+        </form>
+    </div>
+
+    <!-- JavaScript to handle form submission -->
+    <script>
+        document.getElementById("registerForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent form refresh
+            
+            // Get user input
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+
+            if (!email.includes("@")) {
+                alert("Please enter a valid email address.");
+                return;
+            }
+
+            // Encode parameters properly
+            const queryString = new URLSearchParams({ name: name, email: email }).toString();
+
+            // Redirect to bracket.html with the email and name as query parameters
+            window.location.href = `bracket.html?${queryString}`;
+        });
+    </script>
+</body>
+</html>

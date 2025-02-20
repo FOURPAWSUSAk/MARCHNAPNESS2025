@@ -6,32 +6,34 @@ body {
 	background-repeat: no-repeat;
 	margin: 0;
 	padding: 0;
-    
 }
-    .bracket-header {
+.bracket-header {
     width: 100%;
     text-align: center;
     display: flex;
+    flex-direction: column; /* Stack elements vertically */
     justify-content: center;
     align-items: center;
 }
 .bracket-wrapper {
-    display: flex;
-    flex-direction: column; /* Stack elements vertically */
-    align-items: center; /* Center all content horizontally */
-    justify-content: center; /* Ensure full centering */        
+	display: flex;
+	flex-direction: column;
+	/* Stack elements vertically */
+	align-items: center;
+	/* Center all content horizontally */
+	justify-content: center;
+	/* Ensure full centering */
 }
-
 h1 {
-    font-size: 60px;
-    font-family: 'DIN Pro', sans-serif;
-    font-weight: bold;
-    color: white;
-    text-align: center;
-    margin: 0 auto;
-    padding-top: 10px;
-    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
-    letter-spacing: 1px;
+	font-size: 60px;
+	font-family: 'DIN Pro', sans-serif;
+	font-weight: bold;
+	color: white;
+	text-align: center;
+	margin: 0 auto;
+	padding-top: 10px;
+	text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+	letter-spacing: 1px;
 }
 .bracket-container {
 	display: flex;
@@ -47,19 +49,24 @@ h1 {
 	font-size: 12px;
 	font-weight: 400;
 	text-align: center;
-    color: white;
+	color: white;
 	padding: 4px;
 	border-radius: 0px;
 	width: 100%;
 }
 .round-1, .round-2, .semi-finals, .championship {
-    display: flex;
-    min-width: fit-content;
-    flex-direction: column; /* Stack elements vertically */
-    justify-content: center; /* Centers elements vertically */
-    align-items: center; /* Centers elements horizontally */
-    height: 100%; /* Ensures the container fills available height */
-    text-align: center; /* Ensures text inside elements is centered */
+	display: flex;
+	min-width: fit-content;
+	flex-direction: column;
+	/* Stack elements vertically */
+	justify-content: center;
+	/* Centers elements vertically */
+	align-items: center;
+	/* Centers elements horizontally */
+	height: 100%;
+	/* Ensures the container fills available height */
+	text-align: center;
+	/* Ensures text inside elements is centered */
 }
 /* Funnel Effect: Adjust spacing as rounds progress */
 .round-1 {
@@ -83,7 +90,8 @@ h1 {
 	justify-content: center;
 	/* Centers content vertically */
 	margin: 2px;
-	padding: 3px;	border-radius: 0px;
+	padding: 3px;
+	border-radius: 0px;
 	width: 100px;
 	/* Ensure consistent width */
 	text-align: center;
@@ -94,7 +102,7 @@ h1 {
 	/* Ensures dropdown text is centered */
 	width: 100%;
 	padding: 3px;
-    margin-bottom: 5px;
+	margin-bottom: 5px;
 	font-size: 12px;
 	border-radius: 0px;
 	color: black;
@@ -103,25 +111,54 @@ h1 {
 	margin-top: 60px;
 	/* Moves it 50px lower */
 	margin-bottom: 5px;
-    text-align: center;
+	text-align: center;
 	color: white;
 	font-size: 60px;
 	font-weight: bold;
 	text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
-    letter-spacing: 6px;
+	letter-spacing: 6px;
 	display: block;
 	width: 100%;
 }
+h2 {
+	text-align: center;
+	font-weight: normal;
+	font-family: Verdana, sans-serif;
+	font-size: 16px;
+	/* Reduced font size */
+	margin-top: 20px;
+	/* Moves it lower */
+	margin-bottom: 25px;
+	color: white;
+	max-width: 76%;
+	line-height: 1.5;
+}
+/* Hover Effect on Images (Smaller & Lower) */
+span img {
+	opacity: 0;
+	position: fixed;
+	width: 15%;
+	/* Smaller image */
+	left: 50%;
+	top: 50%;
+	/* Lowered image position */
+	transform: translate(-50%, -50%);
+	pointer-events: none;
+}
+/* Hover Effect to Show Image */
+span:hover > img {
+	opacity: 1;
+}
 .sanctuary-title {
 	font-size: 12px;
-    font-family: Verdana, "sans-serif";
+	font-family: Verdana, "sans-serif";
 	font-weight: 400;
 	text-align: center;
 	letter-spacing: 0px;
-    padding-left: 4px;
-    padding-right: 4px;
-    padding-top: 5px;
-    padding-bottom: 5px;
+	padding-left: 4px;
+	padding-right: 4px;
+	padding-top: 5px;
+	padding-bottom: 5px;
 	color: white;
 	background: rgba(0, 0, 0, 0.6);
 	/* Semi-transparent background */
@@ -131,20 +168,18 @@ h1 {
 .round-title, .semi-finals-title, .championship-title {
 	font-size: 12px;
 	font-weight: 400;
-    font-family: Verdana, "sans-serif";
+	font-family: Verdana, "sans-serif";
 	text-align: center;
 	letter-spacing: 0px;
 	color: white;
 	background: rgba(0, 0, 0, 0.6);
 	padding-left: 4px;
-    padding-right: 4px;
-    padding-top: 5px;
-    padding-bottom: 5px;
+	padding-right: 4px;
+	padding-top: 5px;
+	padding-bottom: 5px;
 	border-radius: 0px;
 	width:95%;
 }
-
-
 select {
 	width: 50%;
 	padding: 5px;
@@ -158,11 +193,11 @@ select {
 	justify-content: space-evenly;
 	flex-wrap: nowrap;
 	padding-left: 100px;
-    padding-right: 100px;
+	padding-right: 100px;
 	margin-bottom: 0px;
 }
 button {
-    width: 200px;
+	width: 200px;
 	padding: 6px;
 	margin: 4px;
 	background: #2e7d32;
@@ -175,8 +210,8 @@ button {
 }
 button:hover {
 	background: #FFFFFF;
-    color: #2e7d32;
-    border: 3px solid #2e7d32;
+	color: #2e7d32;
+	border: 3px solid #2e7d32;
 	border-radius: 0px;
 }
 /* Fix button positioning */
@@ -193,8 +228,8 @@ button:hover {
 	margin-bottom: 5px;
 }
 .bracket-image img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
+	max-width: 100%;
+	height: auto;
+	display: block;
+	margin: 0 auto;
 }

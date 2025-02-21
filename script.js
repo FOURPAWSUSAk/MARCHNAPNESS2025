@@ -209,6 +209,13 @@ document.getElementById('resetBracket').addEventListener('click', () => {
 // ✅ Add Snackbar Function Here (Outside document.addEventListener)
 function showSnackbar() {
     var x = document.getElementById("snackbar");
+    var button = document.querySelector("button"); // Selects the button
+
+    // ✅ Dynamically position the snackbar above the button
+    var buttonRect = button.getBoundingClientRect();
+    x.style.top = (buttonRect.top - 60) + "px"; // Moves the snackbar above button
     x.className = "show";
+
     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 6000);
+}
 }

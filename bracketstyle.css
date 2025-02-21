@@ -251,10 +251,28 @@ button:hover {
     font-size: 18px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+/* Snackbar Styling (Fixed to Appear Above Button) */
+#snackbar {
+    visibility: hidden;
+    min-width: 300px;
+    background-color: rgba(51, 51, 51, 0.9); /* Slight transparency */
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 16px;
+    position: absolute; /* Change from fixed to absolute */
+    z-index: 1500; /* Ensure it appears above other elements */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 18px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
 
-/* Snackbar Show Animation */
+/* Automatically Position Tooltip Above the Button */
 #snackbar.show {
     visibility: visible;
+    top: auto !important; /* Reset auto positioning */
+    bottom: 100px; /* Moves it above the button */
     -webkit-animation: fadein 0.5s, fadeout 0.5s 5.5s;
     animation: fadein 0.5s, fadeout 0.5s 5.5s;
 }

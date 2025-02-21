@@ -13,8 +13,8 @@ body {
     background-position: center;  /* Center the image */
     background-repeat: no-repeat;  /* Prevent repeating */
     background-attachment: local; /* Keep it fixed when scrolling */
-    margin: 0;
-    padding: 0;
+    margin-top: 40px;
+    padding: 40px;
 }
 
 .register-container {

@@ -6,8 +6,11 @@
     <title>March Napness 2025</title>
 
     <link rel="stylesheet" href="bracketstyle.css">
-    <!-- ✅ Load EmailJS (ONLY here, removed duplicate) -->
+    
+    <!-- ✅ Load EmailJS -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3.11.0/dist/email.min.js"></script>  
+    <!-- ✅ Load html2canvas for capturing the bracket -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 
 <body>
@@ -39,10 +42,15 @@
             <img src="https://i.postimg.cc/YSprk52t/5.png"/>
        </span>
             </h2>
+            <!-- Snackbar Trigger Button -->
+<button onclick="showSnackbar()">Click for more information!</button>
+
+<!-- Snackbar -->
+<div id="snackbar">Hover over the sanctuary names above to see this year's competitors!</div>
         </div>
     </div>
-    <div class="bracket-container">
-
+    <div class="bracket-container" id="bracket-container"> <!-- ✅ ADDED ID for screenshot -->
+        
         <!-- Left Side: Round 1 -->
         <div class="round round-1">
             <h3 class="sanctuary-title">BEAR SANCTUARY Arbesbach</h3>
@@ -117,12 +125,62 @@
         <img src="https://i.postimg.cc/vmrPB411/111111.png" alt="Sanctuary Logos">
     </div>
 
-    <!-- ✅ Scripts moved outside of div, placed before closing </body> -->
-    <!-- Load jQuery First (if needed) -->
+    <!-- ✅ Scripts placed at the bottom for better loading -->
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-
-    <!-- Load Your Bracket Script -->
     <script src="script.js"></script>    
 
+    <script>
+        document.getElementById("submitBracket").addEventListener("click", () => {
+            console.log("✅ Submit button clicked!");
+
+            // Get user info from URL
+            const params = new URLSearchParams(window.location.search);
+            const name = params.get("name") || "Unknown";
+            const email = params.get("email") || "";
+
+            if (!email) {
+                alert("No email found. Please register first.");
+                return;
+            }
+
+            // Collect Bracket Selections
+            const bracketSelections = {};
+            document.querySelectorAll("select").forEach((select) => {
+                bracketSelections[select.id] = select.value || "Not Selected";
+            });
+
+            // Email Parameters
+            const emailParams = {
+                user_name: name,
+                user_email: email,
+                bracket_data: JSON.stringify(bracketSelections, null, 2),
+                reply_to: "ksnyderfourpawsusa@gmail.com"
+            };
+
+            // Send via EmailJS
+            emailjs.send("service_87g0axd", "template_6fjqswe", emailParams)
+                .then((response) => {
+                    alert("✅ Bracket submitted successfully! Your bracket will now be downloaded.");
+                    console.log("✅ Success:", response);
+
+                    // Call function to capture and download the bracket
+                    captureAndDownloadBracket();
+                })
+                .catch((error) => {
+                    alert("❌ Error submitting bracket. Check the console.");
+                    console.error("❌ Error:", error);
+                });
+        });
+
+        function captureAndDownloadBracket() {
+            html2canvas(document.getElementById("bracket-container"), { scale: 2 })
+                .then((canvas) => {
+                    const link = document.createElement("a");
+                    link.href = canvas.toDataURL("image/png");
+                    link.download = "MarchNapness_Bracket.png";
+                    link.click();
+                });
+        }
+    </script>
 </body>
 </html>

@@ -1,8 +1,8 @@
 /* jshint esversion: 6 */
 /* eslint-disable no-console */
 document.addEventListener('DOMContentLoaded', () => {
-  let isScreenshotCaptured = false; // ? Prevents duplicate downloads
-  let isEmailSent = false; // ? Prevents duplicate email submissions
+  let isScreenshotCaptured = false; // ✅ Prevents duplicate downloads
+  let isEmailSent = false; // ✅ Prevents duplicate email submissions
 
   const submitButton = document.getElementById('submitBracket');
 
@@ -25,13 +25,13 @@ document.addEventListener('DOMContentLoaded', () => {
       options.map((name) => `<option value="${name}" ${name === previousSelection ? 'selected' : ''}>${name}</option>`).join('');
   };
 
-  // ? Populate Round 1 Matches on Load
+  // ✅ Populate Round 1 Matches on Load
   Object.keys(sanctuaries).forEach((sanctuary) => {
     populateMatchOptions(`${sanctuary}_match1`, sanctuaries[sanctuary]);
     populateMatchOptions(`${sanctuary}_match2`, sanctuaries[sanctuary]);
   });
 
-  // ? Function to update next rounds dynamically
+  // ✅ Function to update next rounds dynamically
   const updateNextRound = (previousMatches, nextRoundId) => {
     const selectedOptions = previousMatches.map((match) => match.value).filter(Boolean);
     const nextRound = document.getElementById(nextRoundId);
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const semiRight = document.getElementById('semi_right');
   const championship = document.getElementById('championship');
 
-  // ? Preserve Semi-Finals Selection **Separately**
+  // ✅ Preserve Semi-Finals Selection **Separately**
   const updateSemiFinals = () => {
     const leftWinners = ['arbs', 'mur', 'arosa']
       .map((sanctuary) => document.getElementById(`round2_${sanctuary}`).value)
@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   round2Matches.forEach((round2) => round2.addEventListener('change', updateSemiFinals));
 
-  // ? Preserve Championship Selection
+  // ✅ Preserve Championship Selection
   const updateChampionship = () => {
     const finalists = [semiLeft.value, semiRight.value].filter(Boolean);
     championship.innerHTML = `<option value="">Select</option>` +
@@ -102,16 +102,16 @@ document.addEventListener('DOMContentLoaded', () => {
   semiLeft.addEventListener('change', updateChampionship);
   semiRight.addEventListener('change', updateChampionship);
 
-  // ? Ensure EmailJS is loaded
+  // ✅ Ensure EmailJS is loaded
   emailjs.init('Pm9cHB9HYNYgiu_Bx');
 
-  // ? Submit Bracket + Capture Screenshot After Email Sent
+  // ✅ Submit Bracket + Capture Screenshot After Email Sent
   submitButton.addEventListener('click', () => {
-    if (isEmailSent) return; // ? Prevents duplicate emails
-    isEmailSent = true; // ? Ensures only one email is sent
+    if (isEmailSent) return; // ✅ Prevents duplicate emails
+    isEmailSent = true; // ✅ Ensures only one email is sent
 
-    console.log('? Submit button clicked!');
-    submitButton.disabled = true; // ? Disable button to prevent multiple clicks
+    console.log('✅ Submit button clicked!');
+    submitButton.disabled = true; // ✅ Disable button to prevent multiple clicks
 
     const params = new URLSearchParams(window.location.search);
     const name = params.get('name') || 'Unknown';
@@ -138,8 +138,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     emailjs.send('service_87g0axd', 'template_6fjqswe', emailParams)
       .then((response) => {
-        alert('? Bracket submitted successfully! Your bracket will now be downloaded.');
-        console.log('? Success:', response);
+        alert('✅ Bracket submitted successfully! Your bracket will now be downloaded.');
+        console.log('✅ Success:', response);
 
         if (!isScreenshotCaptured) {
           isScreenshotCaptured = true;
@@ -147,10 +147,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       })
       .catch((error) => {
-        alert('? Error submitting bracket. Check the console.');
-        console.error('? Error:', error);
-        isEmailSent = false; // ? Reset flag if error occurs
-        submitButton.disabled = false; // ? Re-enable button
+        alert('❌ Error submitting bracket. Check the console.');
+        console.error('❌ Error:', error);
+        isEmailSent = false; // ✅ Reset flag if error occurs
+        submitButton.disabled = false; // ✅ Re-enable button
       });
   });
 
@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const bracketElement = document.getElementById('bracket-container');
 
     if (!bracketElement) {
-      console.error("? Bracket container not found!");
+      console.error("❌ Bracket container not found!");
       return;
     }
 
@@ -173,40 +173,40 @@ document.addEventListener('DOMContentLoaded', () => {
         link.click();
       })
       .catch((error) => {
-        console.error('? Error capturing bracket:', error);
+        console.error('❌ Error capturing bracket:', error);
       });
   }
-    // ? Reset Bracket Button Fix
+    // ✅ Reset Bracket Button Fix
 document.getElementById('resetBracket').addEventListener('click', () => {
-    console.log('? Reset button clicked! Resetting all selections...');
+    console.log('🔄 Reset button clicked! Resetting all selections...');
 
-    // ? Reset all dropdowns to "Select"
+    // ✅ Reset all dropdowns to "Select"
     document.querySelectorAll('select').forEach(select => {
         select.value = ''; // Reset selection to default
     });
 
-    // ? Repopulate Round 1 dropdowns
+    // ✅ Repopulate Round 1 dropdowns
     Object.keys(sanctuaries).forEach(sanctuary => {
         populateMatchOptions(`${sanctuary}_match1`, sanctuaries[sanctuary]);
         populateMatchOptions(`${sanctuary}_match2`, sanctuaries[sanctuary]);
     });
 
-    // ? Clear later rounds (Round 2, Semi-finals, Championship)
+    // ✅ Clear later rounds (Round 2, Semi-finals, Championship)
     [...round2Matches, semiLeft, semiRight, championship].forEach(dropdown => {
         dropdown.innerHTML = '<option value="">Select</option>'; // Reset dropdown options
     });
 
-    // ? Re-enable the Submit button if disabled
+    // ✅ Re-enable the Submit button if disabled
     submitButton.disabled = false;
-    isEmailSent = false; // ? Reset email flag
-    isScreenshotCaptured = false; // ? Reset screenshot flag
+    isEmailSent = false; // ✅ Reset email flag
+    isScreenshotCaptured = false; // ✅ Reset screenshot flag
 
-    console.log('? Bracket has been fully reset.');
+    console.log('✅ Bracket has been fully reset.');
 });
 });
 
 
-// ? Add Snackbar Function Here (Outside document.addEventListener)
+// ✅ Add Snackbar Function Here (Outside document.addEventListener)
 function showSnackbar() {
     var x = document.getElementById("snackbar");
     x.className = "show";

@@ -35,6 +35,22 @@ h1 {
 	text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
 	letter-spacing: 1px;
 }
+/* 🔹 Updated: Hover Effect on Images to Appear Above Snackbar */
+span img {
+    opacity: 0;
+    position: fixed;
+    width: 20%; /* Smaller image */
+    left: 50%;
+    top: 50%; /* Lowered image position */
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 9999; /* 🔹 Increased z-index to ensure it appears above the tooltip */
+}
+
+/* 🔹 Updated: Hover Effect to Show Image */
+span:hover > img {
+    opacity: 1;
+}
 .bracket-container {
 	display: flex;
 	justify-content: center;
@@ -235,6 +251,7 @@ button:hover {
 	margin: 0 auto;
 }
 /* Snackbar Styling */
+/* ? Ensure the snackbar appears centered but below hover images */
 #snackbar {
     visibility: hidden;
     min-width: 300px;
@@ -244,35 +261,17 @@ button:hover {
     border-radius: 5px;
     padding: 16px;
     position: fixed;
-    z-index: 1000; /* Ensures it appears above other elements */
+    z-index: 1000; /* ? Lower than hover images */
     left: 50%;
-    top: 50%;
+    top: 55%; /* ? Lower position so it doesn't overlap hover images */
     transform: translate(-50%, -50%);
     font-size: 18px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-/* Snackbar Styling (Fixed to Appear Above Button) */
-#snackbar {
-    visibility: hidden;
-    min-width: 300px;
-    background-color: rgba(51, 51, 51, 0.9); /* Slight transparency */
-    color: #fff;
-    text-align: center;
-    border-radius: 5px;
-    padding: 16px;
-    position: absolute; /* Change from fixed to absolute */
-    z-index: 1500; /* Ensure it appears above other elements */
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 18px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
 
-/* Automatically Position Tooltip Above the Button */
+/* Snackbar Show Animation */
 #snackbar.show {
     visibility: visible;
-    top: auto !important; /* Reset auto positioning */
-    bottom: 100px; /* Moves it above the button */
     -webkit-animation: fadein 0.5s, fadeout 0.5s 5.5s;
     animation: fadein 0.5s, fadeout 0.5s 5.5s;
 }
@@ -285,4 +284,21 @@ button:hover {
 @keyframes fadeout {
     from { opacity: 1; }
     to { opacity: 0; }
+}
+
+/* ? Ensure hover images stay on top */
+span img {
+    opacity: 0;
+    position: fixed;
+    width: 15%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 1500; /* ? Higher than snackbar so it appears above */
+}
+
+/* Show image on hover */
+span:hover > img {
+    opacity: 1;
 }

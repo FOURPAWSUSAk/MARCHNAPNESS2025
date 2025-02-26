@@ -1,182 +1,158 @@
 /* jshint esversion: 6 */
 /* eslint-disable no-console */
 document.addEventListener('DOMContentLoaded', () => {
-    let isScreenshotCaptured = false;
-    let isEmailSent = false;
-
-    const submitButton = document.getElementById('submitBracket');
-
-    // Players per sanctuary
     const sanctuaries = {
-        arbs: ['Brumca', 'Erich', 'Mark'],
-        mur: ['Mascha', 'Michal', 'Rocco', 'Ida'],
-        arosa: ['Amelia', 'Meimo', 'Sam', 'Jamila'],
-        pri: ['Mira', 'Tomi', 'Hana', 'Mali'],
-        dom: ['Tyson', 'Frankie', 'Masha', 'Julia'],
-        bel: ['Iva', 'Suzana', 'Jeta', 'Svetla']
+        arbs: ["Brumca", "Erich", "Mark"],
+        mur: ["Mascha", "Michal", "Rocco", "Ida"],
+        arosa: ["Amelia", "Meimo", "Sam", "Jamila"],
+        pri: ["Mira", "Tomi", "Hana", "Mali"],
+        dom: ["Tyson", "Frankie", "Masha", "Julia"],
+        bel: ["Iva", "Suzana", "Jeta", "Svetla"],
+    };
+
+    const escapeHTML = (str) => {
+        return String(str).replace(/&/g, "&amp;")
+                  .replace(/</g, "&lt;")
+                  .replace(/>/g, "&gt;")
+                  .replace(/"/g, "&quot;")
+                  .replace(/'/g, "&#39;");
     };
 
     const populateMatchOptions = (selectId, options) => {
         const select = document.getElementById(selectId);
         if (!select) return;
 
-        const previousSelection = select.value;
-        select.innerHTML = `<option value="">Select</option>` +
-            options.map((name) => `<option value="${name}" ${name === previousSelection ? 'selected' : ''}>${name}</option>`).join('');
+        const previousSelection = escapeHTML(select.value);
+        select.innerHTML = ''; 
+        const defaultOption = document.createElement('option');
+        defaultOption.value = '';
+        defaultOption.textContent = 'Select';
+        select.appendChild(defaultOption);
+
+        options.forEach((name) => {
+            const safeName = escapeHTML(name);
+            const option = document.createElement('option');
+            option.value = safeName;
+            option.textContent = safeName;
+            if (safeName === previousSelection) {
+                option.selected = true;
+            }
+            select.appendChild(option);
+        });
     };
 
-    // ✅ Populate Round 1 Matches on Load
     Object.keys(sanctuaries).forEach((sanctuary) => {
-        populateMatchOptions(`${sanctuary}_match1`, sanctuaries[sanctuary]);
-        populateMatchOptions(`${sanctuary}_match2`, sanctuaries[sanctuary]);
+        const match1Id = `${sanctuary}_match1`;
+        const match2Id = `${sanctuary}_match2`;
+        if (document.getElementById(match1Id)) {
+            populateMatchOptions(match1Id, sanctuaries[sanctuary]);
+        }
+        if (document.getElementById(match2Id)) {
+            populateMatchOptions(match2Id, sanctuaries[sanctuary]);
+        }
     });
 
-    // ✅ Function to update next rounds dynamically
     const updateNextRound = (previousMatches, nextRoundId) => {
-        const selectedOptions = previousMatches.map((match) => match.value).filter(Boolean);
+        const selectedOptions = previousMatches.map((match) => escapeHTML(match.value)).filter(Boolean);
         const nextRound = document.getElementById(nextRoundId);
         if (!nextRound) return;
 
-        const previousSelection = nextRound.value;
-        nextRound.innerHTML = selectedOptions.length
-            ? `<option value="">Select</option>` +
-            selectedOptions.map((name) => `<option value="${name}" ${name === previousSelection ? 'selected' : ''}>${name}</option>`).join('')
-            : '<option value="">Select</option>';
+        const previousSelection = escapeHTML(nextRound.value);
+        nextRound.innerHTML = ''; 
+        const defaultOption = document.createElement('option');
+        defaultOption.value = '';
+        defaultOption.textContent = 'Select';
+        nextRound.appendChild(defaultOption);
+
+        selectedOptions.forEach((name) => {
+            const option = document.createElement('option');
+            option.value = name;
+            option.textContent = name;
+            if (name === previousSelection) {
+                option.selected = true;
+            }
+            nextRound.appendChild(option);
+        });
     };
 
-    // ✅ Attach event listeners for Round 1 to Round 2
     const round1Matches = Object.keys(sanctuaries).map((sanctuary) => [
         document.getElementById(`${sanctuary}_match1`),
         document.getElementById(`${sanctuary}_match2`)
     ]);
     const round2Matches = Object.keys(sanctuaries).map((sanctuary) => document.getElementById(`round2_${sanctuary}`));
 
-    // ✅ Semi-Finals & Championship
     const semiLeft = document.getElementById('semi_left');
     const semiRight = document.getElementById('semi_right');
     const championship = document.getElementById('championship');
 
-    // ✅ Preserve Semi-Finals Selection
     const updateSemiFinals = () => {
         const leftWinners = ['arbs', 'mur', 'arosa']
-            .map((sanctuary) => document.getElementById(`round2_${sanctuary}`).value)
+            .map((sanctuary) => document.getElementById(`round2_${sanctuary}`)?.value || '')
             .filter(Boolean);
 
         const rightWinners = ['pri', 'dom', 'bel']
-            .map((sanctuary) => document.getElementById(`round2_${sanctuary}`).value)
+            .map((sanctuary) => document.getElementById(`round2_${sanctuary}`)?.value || '')
             .filter(Boolean);
 
-        const previousLeftSelection = semiLeft.value;
-        const previousRightSelection = semiRight.value;
+        semiLeft.innerHTML = '';
+        const leftDefault = document.createElement('option');
+        leftDefault.value = '';
+        leftDefault.textContent = 'Select';
+        semiLeft.appendChild(leftDefault);
 
-        semiLeft.innerHTML = `<option value="">Select</option>` +
-            leftWinners.map((name) => `<option value="${name}" ${name === previousLeftSelection ? 'selected' : ''}>${name}</option>`).join('');
+        leftWinners.forEach((name) => {
+            const option = document.createElement('option');
+            option.value = name;
+            option.textContent = name;
+            semiLeft.appendChild(option);
+        });
 
-        semiRight.innerHTML = `<option value="">Select</option>` +
-            rightWinners.map((name) => `<option value="${name}" ${name === previousRightSelection ? 'selected' : ''}>${name}</option>`).join('');
+        semiRight.innerHTML = '';
+        const rightDefault = document.createElement('option');
+        rightDefault.value = '';
+        rightDefault.textContent = 'Select';
+        semiRight.appendChild(rightDefault);
+
+        rightWinners.forEach((name) => {
+            const option = document.createElement('option');
+            option.value = name;
+            option.textContent = name;
+            semiRight.appendChild(option);
+        });
 
         updateChampionship();
     };
 
     round1Matches.forEach(([match1, match2], index) => {
-        match1.addEventListener('change', () => updateNextRound([match1, match2], round2Matches[index].id));
-        match2.addEventListener('change', () => updateNextRound([match1, match2], round2Matches[index].id));
+        if (match1 && match2 && round2Matches[index]) {
+            match1.addEventListener('change', () => updateNextRound([match1, match2], round2Matches[index].id));
+            match2.addEventListener('change', () => updateNextRound([match1, match2], round2Matches[index].id));
+        }
     });
 
-    round2Matches.forEach((round2) => round2.addEventListener('change', updateSemiFinals));
+    round2Matches.forEach((round2) => round2?.addEventListener('change', updateSemiFinals));
+    semiLeft?.addEventListener('change', updateChampionship);
+    semiRight?.addEventListener('change', updateChampionship);
 
-    // ✅ Preserve Championship Selection
-    const updateChampionship = () => {
-        const finalists = [semiLeft.value, semiRight.value].filter(Boolean);
-        championship.innerHTML = `<option value="">Select</option>` +
-            finalists.map((name) => `<option value="${name}">${name}</option>`).join('');
-    };
+    function updateChampionship() {
+        const finalists = [semiLeft?.value || '', semiRight?.value || ''].filter(Boolean);
+        championship.innerHTML = '';
+        const champDefault = document.createElement('option');
+        champDefault.value = '';
+        champDefault.textContent = 'Select';
+        championship.appendChild(champDefault);
 
-    semiLeft.addEventListener('change', updateChampionship);
-    semiRight.addEventListener('change', updateChampionship);
-
-    // ✅ Ensure EmailJS is loaded
-    emailjs.init('Pm9cHB9HYNYgiu_Bx');
-
-    // ✅ Submit Bracket + Capture Screenshot After Email Sent
-    submitButton.addEventListener('click', () => {
-        if (isEmailSent) return;
-        isEmailSent = true;
-
-        console.log('✅ Submit button clicked!');
-        submitButton.disabled = true;
-
-        const params = new URLSearchParams(window.location.search);
-        const name = params.get('name') || 'Unknown';
-        const email = params.get('email') || '';
-
-        if (!email) {
-            alert('No email found. Please register first.');
-            submitButton.disabled = false;
-            isEmailSent = false;
-            return;
-        }
-
-        const bracketSelections = {};
-        document.querySelectorAll('select').forEach((select) => {
-            bracketSelections[select.id] = select.value || 'Not Selected';
+        finalists.forEach((name) => {
+            const option = document.createElement('option');
+            option.value = name;
+            option.textContent = name;
+            championship.appendChild(option);
         });
-
-        const emailParams = {
-            user_name: name,
-            user_email: email,
-            reply_to: 'ksnyderfourpawsusa@gmail.com',
-            bracket_data: JSON.stringify(bracketSelections, null, 2)
-        };
-
-        emailjs.send('service_87g0axd', 'template_6fjqswe', emailParams)
-            .then((response) => {
-                alert('✅ Bracket submitted successfully! Your bracket will now be downloaded.');
-                console.log('✅ Success:', response);
-
-                if (!isScreenshotCaptured) {
-                    isScreenshotCaptured = true;
-                    setTimeout(captureAndDownloadBracket, 1000);
-                }
-            })
-            .catch((error) => {
-                alert('❌ Error submitting bracket. Check the console.');
-                console.error('❌ Error:', error);
-                isEmailSent = false;
-                submitButton.disabled = false;
-            });
-    });
-
-    function captureAndDownloadBracket() {
-        if (isScreenshotCaptured) return;
-        isScreenshotCaptured = true;
-
-        const bracketElement = document.getElementById('bracket-container');
-
-        if (!bracketElement) {
-            console.error("❌ Bracket container not found!");
-            return;
-        }
-
-        html2canvas(bracketElement, { scale: 2 })
-            .then((canvas) => {
-                const link = document.createElement('a');
-                link.href = canvas.toDataURL('image/png');
-                link.download = 'MarchNapness_Bracket.png';
-                link.click();
-            })
-            .catch((error) => {
-                console.error('❌ Error capturing bracket:', error);
-            });
     }
-    // ✅ Snackbar Fix
-   function showSnackbar() {
-    var snackbar = document.getElementById("snackbar");
-    snackbar.classList.add("show");
 
-    // Hide after 6 seconds
-    setTimeout(function() {
-        snackbar.classList.remove("show");
-    }, 6000);
-}
+    if (typeof emailjs !== "undefined" && emailjs.init) {
+        emailjs.init('Pm9cHB9HYNYgiu_Bx');
+    } else {
+        console.error('❌ EmailJS is not loaded.');
+    }
 });

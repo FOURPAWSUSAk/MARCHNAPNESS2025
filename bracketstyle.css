@@ -1,304 +1,206 @@
 body {
-	font-family: 'DIN Pro', sans-serif;
-	background-image: url('https://i.postimg.cc/k5cwf8tc/background-bracket.jpg');
-	background-size: cover;
-	background-position: center;
-	background-repeat: no-repeat;
-	margin: 0;
-	padding: 0;
+  font-family: 'DIN Pro', sans-serif;
+  background-image: url('https://i.postimg.cc/k5cwf8tc/background-bracket.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 0;
+  padding: 0;
 }
+
 .bracket-header {
-    width: 100%;
-    text-align: center;
-    display: flex;
-    flex-direction: column; /* Stack elements vertically */
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
+
 .bracket-wrapper {
-	display: flex;
-	flex-direction: column;
-	/* Stack elements vertically */
-	align-items: center;
-	/* Center all content horizontally */
-	justify-content: center;
-	/* Ensure full centering */
-}
-h1 {
-	font-size: 60px;
-	font-family: 'DIN Pro', sans-serif;
-	font-weight: bold;
-	color: white;
-	text-align: center;
-	margin: 0 auto;
-	padding-top: 10px;
-	text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
-	letter-spacing: 1px;
-}
-/* 🔹 Updated: Hover Effect on Images to Appear Above Snackbar */
-span img {
-    opacity: 0;
-    position: fixed;
-    width: 20%; /* Smaller image */
-    left: 50%;
-    top: 50%; /* Lowered image position */
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-    z-index: 9999; /* 🔹 Increased z-index to ensure it appears above the tooltip */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-/* 🔹 Updated: Hover Effect to Show Image */
-span:hover > img {
-    opacity: 1;
-}
-.bracket-container {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-wrap: wrap;
-	gap: 40px;
-	/* Space between columns */
-	padding: 0px;
-}
-/* Round 2 & Semi-Finals titles centered */
-.round-title, .semi-finals-title, .championship-title {
-	font-size: 12px;
-	font-weight: 400;
-	text-align: center;
-	color: white;
-	padding: 4px;
-	border-radius: 0px;
-	width: 100%;
-}
-.round-1, .round-2, .semi-finals, .championship {
-	display: flex;
-	min-width: fit-content;
-	flex-direction: column;
-	/* Stack elements vertically */
-	justify-content: center;
-	/* Centers elements vertically */
-	align-items: center;
-	/* Centers elements horizontally */
-	height: 100%;
-	/* Ensures the container fills available height */
-	text-align: center;
-	/* Ensures text inside elements is centered */
-}
-/* Funnel Effect: Adjust spacing as rounds progress */
-.round-1 {
-	margin-bottom: 40px;
-}
-.round-2 {
-	margin-bottom: 30px;
-}
-.semi-finals {
-	margin-bottom: 20px;
-}
-.championship {
-	margin-bottom: 10px;
-}
-/* Match dropdown styles */
-.match {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	/* Centers dropdowns horizontally */
-	justify-content: center;
-	/* Centers content vertically */
-	margin: 2px;
-	padding: 3px;
-	border-radius: 0px;
-	width: 100px;
-	/* Ensure consistent width */
-	text-align: center;
-}
-.match select {
-	text-align: center;
-	text-align-last: center;
-	/* Ensures dropdown text is centered */
-	width: 100%;
-	padding: 3px;
-	margin-bottom: 5px;
-	font-size: 12px;
-	border-radius: 0px;
-	color: black;
-}
 h1 {
-	margin-top: 60px;
-	/* Moves it 50px lower */
-	margin-bottom: 5px;
-	text-align: center;
-	color: white;
-	font-size: 60px;
-	font-weight: bold;
-	text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
-	letter-spacing: 6px;
-	display: block;
-	width: 100%;
+  font-size: 60px;
+  font-family: 'DIN Pro', sans-serif;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  margin: 60px auto 5px;
+  padding-top: 10px;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+  letter-spacing: 6px;
+  display: block;
+  width: 100%;
 }
+
 h2 {
-	text-align: center;
-	font-weight: normal;
-	font-family: Verdana, sans-serif;
-	font-size: 16px;
-	/* Reduced font size */
-	margin-top: 20px;
-	/* Moves it lower */
-	margin-bottom: 25px;
-	color: white;
-	max-width: 76%;
-	line-height: 1.5;
-}
-/* Hover Effect on Images (Smaller & Lower) */
-span img {
-	opacity: 0;
-	position: fixed;
-	width: 15%;
-	/* Smaller image */
-	left: 50%;
-	top: 50%;
-	/* Lowered image position */
-	transform: translate(-50%, -50%);
-	pointer-events: none;
-    z-index: 1500;
-}
-/* Hover Effect to Show Image */
-span:hover > img {
-	opacity: 1;
-}
-.sanctuary-title {
-	font-size: 12px;
-	font-family: Verdana, "sans-serif";
-	font-weight: 400;
-	text-align: center;
-	letter-spacing: 0px;
-	padding-left: 4px;
-	padding-right: 4px;
-	padding-top: 5px;
-	padding-bottom: 5px;
-	color: white;
-	background: rgba(0, 0, 0, 0.6);
-	/* Semi-transparent background */
-	border-radius: 0px;
-	width: 100%;
-}
-.round-title, .semi-finals-title, .championship-title {
-	font-size: 12px;
-	font-weight: 400;
-	font-family: Verdana, "sans-serif";
-	text-align: center;
-	letter-spacing: 0px;
-	color: white;
-	background: rgba(0, 0, 0, 0.6);
-	padding-left: 4px;
-	padding-right: 4px;
-	padding-top: 5px;
-	padding-bottom: 5px;
-	border-radius: 0px;
-	width:95%;
-}
-select {
-	width: 50%;
-	padding: 5px;
-	font-size: 12px;
-	border-radius: 0px;
-	border: 1px solid #ddd;
-	background: white;
-}
-.bracket-container {
-	display: flex;
-	justify-content: space-evenly;
-	flex-wrap: nowrap;
-	padding-left: 100px;
-	padding-right: 100px;
-	margin-bottom: 0px;
-}
-button {
-	width: 200px;
-	padding: 6px;
-	margin: 4px;
-	background: #2e7d32;
-	color: white;
-	font-size: 18px;
-	border: 3px solid #FFFFFF;
-	border-radius: 0px;
-	cursor: pointer;
-	transition: 0.3s;
-}
-button:hover {
-	background: #FFFFFF;
-	color: #2e7d32;
-	border: 3px solid #2e7d32;
-	border-radius: 0px;
-}
-/* Fix button positioning */
-.bracket-buttons {
-	display: flex;
-	justify-content: center;
-	/* Center horizontally */
-	align-items: center;
-	/* Align vertically */
-	gap: 100px;
-	/* Add space between buttons */
-	margin-top: 0px;
-	/* Adjust spacing if needed */
-	margin-bottom: 5px;
-}
-.bracket-image img {
-	max-width: 100%;
-	height: auto;
-	display: block;
-	margin: 0 auto;
-}
-/* Snackbar Styling */
-/* ? Ensure the snackbar appears centered but below hover images */
-#snackbar {
-    visibility: hidden;
-    min-width: 300px;
-    background-color: rgba(51, 51, 51, 0.9); /* Slight transparency */
-    color: #fff;
-    text-align: center;
-    border-radius: 5px;
-    padding: 16px;
-    position: fixed;
-    z-index: 1000; /* ? Lower than hover images */
-    left: 50%;
-    top: 55%; /* ? Lower position so it doesn't overlap hover images */
-    transform: translate(-50%, -50%);
-    font-size: 18px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  font-weight: normal;
+  font-family: Verdana, sans-serif;
+  font-size: 16px;
+  margin: 20px auto 25px;
+  color: white;
+  max-width: 76%;
+  line-height: 1.5;
 }
 
-/* Snackbar Show Animation */
+span img {
+  opacity: 0;
+  position: fixed;
+  width: 15%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 1500;
+}
+
+span:hover > img {
+  opacity: 1;
+}
+
+.bracket-container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: nowrap;
+  padding: 0 100px;
+  margin-bottom: 0;
+}
+
+.round-title, .semi-finals-title, .championship-title {
+  font-size: 12px;
+  font-weight: 400;
+  font-family: Verdana, sans-serif;
+  text-align: center;
+  color: white;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 5px 4px;
+  width: 95%;
+}
+
+.sanctuary-title {
+  font-size: 12px;
+  font-family: Verdana, "sans-serif";
+  font-weight: 400;
+  text-align: center;
+  letter-spacing: 0px;
+  padding: 5px 4px;
+  color: white;
+  background: rgba(0, 0, 0, 0.6);
+  width: 100%;
+}
+
+.round-1, .round-2, .semi-finals, .championship {
+  display: flex;
+  min-width: fit-content;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+}
+
+.round-1 { margin-bottom: 40px; }
+.round-2 { margin-bottom: 30px; }
+.semi-finals { margin-bottom: 20px; }
+.championship { margin-bottom: 10px; }
+
+.match {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 2px;
+  padding: 3px;
+  width: 100px;
+  text-align: center;
+}
+
+.match select {
+  width: 100%;
+  padding: 3px;
+  margin-bottom: 5px;
+  font-size: 12px;
+  text-align: center;
+  text-align-last: center;
+  color: black;
+}
+
+select {
+  width: 50%;
+  padding: 5px;
+  font-size: 12px;
+  border: 1px solid #ddd;
+  background: white;
+}
+
+button {
+  width: 200px;
+  padding: 6px;
+  margin: 4px;
+  background: #2e7d32;
+  color: white;
+  font-size: 18px;
+  border: 3px solid #fff;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #fff;
+  color: #2e7d32;
+  border: 3px solid #2e7d32;
+}
+
+.bracket-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
+  margin: 0 0 5px;
+}
+
+.bracket-image img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+#snackbar {
+  visibility: hidden;
+  min-width: 300px;
+  background-color: rgba(51, 51, 51, 0.9);
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1200;
+  left: 50%;
+  top: 60%;
+  transform: translate(-50%, -50%);
+  font-size: 18px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
 #snackbar.show {
-    visibility: visible;
-    -webkit-animation: fadein 0.5s, fadeout 0.5s 5.5s;
-    animation: fadein 0.5s, fadeout 0.5s 5.5s;
+  visibility: visible;
+  animation: fadein 0.5s, fadeout 0.5s 5.5s;
 }
 
 @keyframes fadein {
-    from { opacity: 0; } 
-    to { opacity: 1; }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 @keyframes fadeout {
-    from { opacity: 1; }
-    to { opacity: 0; }
-}
-
-/* ? Ensure hover images stay on top */
-span img {
-    opacity: 0;
-    position: fixed;
-    width: 15%;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-    z-index: 1500; /* ? Higher than snackbar so it appears above */
-}
-
-/* Show image on hover */
-span:hover > img {
-    opacity: 1;
+  from { opacity: 1; }
+  to { opacity: 0; }
 }

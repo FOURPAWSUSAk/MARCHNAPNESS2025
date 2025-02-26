@@ -12,10 +12,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const escapeHTML = (str) => {
         return String(str).replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;")
-            .replace(/"/g, "&quot;")
-            .replace(/'/g, "&#39;");
+                  .replace(/</g, "&lt;")
+                  .replace(/>/g, "&gt;")
+                  .replace(/"/g, "&quot;")
+                  .replace(/'/g, "&#39;");
     };
 
     const populateMatchOptions = (selectId, options) => {
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!select) return;
 
         const previousSelection = escapeHTML(select.value);
-        select.innerHTML = ''; // Clear existing options
+        select.innerHTML = ''; 
         const defaultOption = document.createElement('option');
         defaultOption.value = '';
         defaultOption.textContent = 'Select';
@@ -42,8 +42,14 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     Object.keys(sanctuaries).forEach((sanctuary) => {
-        populateMatchOptions(`${escapeHTML(sanctuary)}_match1`, sanctuaries[sanctuary]);
-        populateMatchOptions(`${escapeHTML(sanctuary)}_match2`, sanctuaries[sanctuary]);
+        const match1Id = `${sanctuary}_match1`;
+        const match2Id = `${sanctuary}_match2`;
+        if (document.getElementById(match1Id)) {
+            populateMatchOptions(match1Id, sanctuaries[sanctuary]);
+        }
+        if (document.getElementById(match2Id)) {
+            populateMatchOptions(match2Id, sanctuaries[sanctuary]);
+        }
     });
 
     const updateNextRound = (previousMatches, nextRoundId) => {
@@ -52,31 +58,28 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!nextRound) return;
 
         const previousSelection = escapeHTML(nextRound.value);
-        nextRound.innerHTML = ''; // Clear existing options
-
+        nextRound.innerHTML = ''; 
         const defaultOption = document.createElement('option');
         defaultOption.value = '';
         defaultOption.textContent = 'Select';
         nextRound.appendChild(defaultOption);
 
-        if (selectedOptions.length) {
-            selectedOptions.forEach((name) => {
-                const option = document.createElement('option');
-                option.value = name;
-                option.textContent = name;
-                if (name === previousSelection) {
-                    option.selected = true;
-                }
-                nextRound.appendChild(option);
-            });
-        }
+        selectedOptions.forEach((name) => {
+            const option = document.createElement('option');
+            option.value = name;
+            option.textContent = name;
+            if (name === previousSelection) {
+                option.selected = true;
+            }
+            nextRound.appendChild(option);
+        });
     };
 
     const round1Matches = Object.keys(sanctuaries).map((sanctuary) => [
-        document.getElementById(`${escapeHTML(sanctuary)}_match1`),
-        document.getElementById(`${escapeHTML(sanctuary)}_match2`)
+        document.getElementById(`${sanctuary}_match1`),
+        document.getElementById(`${sanctuary}_match2`)
     ]);
-    const round2Matches = Object.keys(sanctuaries).map((sanctuary) => document.getElementById(`round2_${escapeHTML(sanctuary)}`));
+    const round2Matches = Object.keys(sanctuaries).map((sanctuary) => document.getElementById(`round2_${sanctuary}`));
 
     const semiLeft = document.getElementById('semi_left');
     const semiRight = document.getElementById('semi_right');
@@ -84,11 +87,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const updateSemiFinals = () => {
         const leftWinners = ['arbs', 'mur', 'arosa']
-            .map((sanctuary) => escapeHTML(document.getElementById(`round2_${sanctuary}`).value))
+            .map((sanctuary) => document.getElementById(`round2_${sanctuary}`)?.value || '')
             .filter(Boolean);
 
         const rightWinners = ['pri', 'dom', 'bel']
-            .map((sanctuary) => escapeHTML(document.getElementById(`round2_${sanctuary}`).value))
+            .map((sanctuary) => document.getElementById(`round2_${sanctuary}`)?.value || '')
             .filter(Boolean);
 
         semiLeft.innerHTML = '';
@@ -121,16 +124,18 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     round1Matches.forEach(([match1, match2], index) => {
-        match1.addEventListener('change', () => updateNextRound([match1, match2], round2Matches[index].id));
-        match2.addEventListener('change', () => updateNextRound([match1, match2], round2Matches[index].id));
+        if (match1 && match2 && round2Matches[index]) {
+            match1.addEventListener('change', () => updateNextRound([match1, match2], round2Matches[index].id));
+            match2.addEventListener('change', () => updateNextRound([match1, match2], round2Matches[index].id));
+        }
     });
 
-    round2Matches.forEach((round2) => round2.addEventListener('change', updateSemiFinals));
-    semiLeft.addEventListener('change', updateChampionship);
-    semiRight.addEventListener('change', updateChampionship);
+    round2Matches.forEach((round2) => round2?.addEventListener('change', updateSemiFinals));
+    semiLeft?.addEventListener('change', updateChampionship);
+    semiRight?.addEventListener('change', updateChampionship);
 
     function updateChampionship() {
-        const finalists = [escapeHTML(semiLeft.value), escapeHTML(semiRight.value)].filter(Boolean);
+        const finalists = [semiLeft?.value || '', semiRight?.value || ''].filter(Boolean);
         championship.innerHTML = '';
         const champDefault = document.createElement('option');
         champDefault.value = '';
@@ -145,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    if (typeof emailjs !== "undefined") {
+    if (typeof emailjs !== "undefined" && emailjs.init) {
         emailjs.init('Pm9cHB9HYNYgiu_Bx');
     } else {
         console.error('❌ EmailJS is not loaded.');

@@ -155,4 +155,54 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         console.error('❌ EmailJS is not loaded.');
     }
+
+    // ✅ Submit Bracket with Correct Data
+    document.getElementById("submitBracket").addEventListener("click", () => {
+        console.log("✅ Submit button clicked!");
+        const params = new URLSearchParams(window.location.search);
+        const name = params.get("name") || "Unknown";
+        const email = params.get("email") || "";
+
+        if (!email) {
+            alert("No email found. Please register first.");
+            return;
+        }
+
+        const bracketSelections = {};
+        document.querySelectorAll("select").forEach((select) => {
+            bracketSelections[select.id] = select.value || "Not Selected";
+        });
+
+        console.log("📩 Bracket Selections:", bracketSelections);
+
+        const emailParams = {
+            user_name: name,
+            user_email: email,
+            bracket_data: JSON.stringify(bracketSelections, null, 2),
+            reply_to: "ksnyderfourpawsusa@gmail.com"
+        };
+
+        emailjs.send("service_87g0axd", "template_6fjqswe", emailParams)
+            .then((response) => {
+                alert("✅ Bracket submitted successfully! Your bracket will now be downloaded.");
+                console.log("✅ Success:", response);
+                captureAndDownloadBracket();
+            })
+            .catch((error) => {
+                alert("❌ Error submitting bracket. Check the console.");
+                console.error("❌ Error:", error);
+            });
+    });
+
+    // 🔄 Reset Bracket Functionality
+    document.getElementById("resetBracket").addEventListener("click", () => {
+        console.log("🔄 Reset button clicked!");
+        document.querySelectorAll("select").forEach((select) => {
+            select.value = "";
+        });
+        document.querySelectorAll("select").forEach((select) => {
+            select.dispatchEvent(new Event("change", { bubbles: true }));
+        });
+        alert("🔄 Bracket has been reset!");
+    });
 });

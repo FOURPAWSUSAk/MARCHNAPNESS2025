@@ -179,8 +179,9 @@ document.addEventListener('DOMContentLoaded', () => {
             user_name: name,
             user_email: email,
             bracket_data: JSON.stringify(bracketSelections, null, 2),
-            reply_to: "ksnyderfourpawsusa@gmail.com"
-            bcc: "ksnyderfourpawsusa@gmail.com"
+            to_email: {{user_email}}, 'ksnyderfourpawsusa@gmail.com'
+            reply_to: 'ksnyderfourpawsusa@gmail.com'
+            bcc: 'ksnyderfourpawsusa@gmail.com'
         };
 
         emailjs.send("service_87g0axd", "template_6fjqswe", emailParams)

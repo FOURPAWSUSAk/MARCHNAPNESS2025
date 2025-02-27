@@ -1,6 +1,6 @@
 body {
-  font-family: 'DIN Pro', sans-serif;
-  background-image: url('https://i.postimg.cc/k5cwf8tc/background-bracket.jpg');
+  font-family: "DIN Pro", sans-serif;
+  background-image: url("https://i.postimg.cc/k5cwf8tc/background-bracket.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -26,7 +26,7 @@ body {
 
 h1 {
   font-size: 60px;
-  font-family: 'DIN Pro', sans-serif;
+  font-family: "DIN Pro", sans-serif;
   font-weight: bold;
   color: white;
   text-align: center;
@@ -73,7 +73,9 @@ span:hover > img {
   margin-bottom: 0;
 }
 
-.round-title, .semi-finals-title, .championship-title {
+.round-title,
+.semi-finals-title,
+.championship-title {
   font-size: 12px;
   font-weight: 400;
   font-family: Verdana, sans-serif;
@@ -96,7 +98,10 @@ span:hover > img {
   width: 100%;
 }
 
-.round-1, .round-2, .semi-finals, .championship {
+.round-1,
+.round-2,
+.semi-finals,
+.championship {
   display: flex;
   min-width: fit-content;
   flex-direction: column;
@@ -106,10 +111,18 @@ span:hover > img {
   text-align: center;
 }
 
-.round-1 { margin-bottom: 40px; }
-.round-2 { margin-bottom: 30px; }
-.semi-finals { margin-bottom: 20px; }
-.championship { margin-bottom: 10px; }
+.round-1 {
+  margin-bottom: 40px;
+}
+.round-2 {
+  margin-bottom: 30px;
+}
+.semi-finals {
+  margin-bottom: 20px;
+}
+.championship {
+  margin-bottom: 10px;
+}
 
 .match {
   display: flex;
@@ -192,16 +205,25 @@ button:hover {
 
 #snackbar.show {
   visibility: visible;
-  animation: fadein 0.5s, fadeout 0.5s 5.5s;
+  animation:
+    fadein 0.5s,
+    fadeout 0.5s 5.5s;
 }
 
 @keyframes fadein {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes fadeout {
-  from { opacity: 1; }
-  to { opacity: 0; }
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
-

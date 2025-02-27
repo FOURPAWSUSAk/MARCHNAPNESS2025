@@ -101,19 +101,6 @@ document.addEventListener("DOMContentLoaded", function () {
     semiLeft.addEventListener("change", updateChampionship);
     semiRight.addEventListener("change", updateChampionship);
 
-    // Reset functionality
-    document.getElementById("resetBracket").addEventListener("click", function() {
-        Object.keys(sanctuaries).forEach(sanctuary => {
-            populateMatchOptions(`${sanctuary}_match1`, sanctuaries[sanctuary]);
-            populateMatchOptions(`${sanctuary}_match2`, sanctuaries[sanctuary]);
-        });
-        
-        round2Matches.forEach(match => clearDropdown(match.id));
-        clearDropdown("semi_left");
-        clearDropdown("semi_right");
-        clearDropdown("championship");
-    });
-
     // Submit and Email functionality
     document.getElementById("submitBracket").addEventListener("click", async () => {
         const params = new URLSearchParams(window.location.search);

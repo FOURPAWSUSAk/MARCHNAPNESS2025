@@ -1,188 +1,154 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>March Napness 2025</title>
-    <link rel="stylesheet" href="bracketstyle.css" />
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3.11.0/dist/email.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-  </head>
-  <body>
-    <div class="bracket-wrapper">
-      <div class="bracket-header">
-        <h1>MARCH NAPNESS 2025</h1>
-        <h2>
-          <span
-            >BEAR SANCTUARY ARBESBACH<img
-              src="https://i.postimg.cc/YCHnvbBn/1.png"
-          /></span>
-          /
-          <span
-            >BEAR SANCTUARY MÜRITZ<img
-              src="https://i.postimg.cc/66ZFT7GQ/2.png"
-          /></span>
-          /
-          <span
-            >Arosa BEAR SANCTUARY<img
-              src="https://i.postimg.cc/0y2hcPVR/AROSA.png"
-          /></span>
-          /
-          <span
-            >BEAR SANCTUARY PRISHTINA<img
-              src="https://i.postimg.cc/FHSxVcNf/3.png"
-          /></span>
-          /
-          <span
-            >BEAR SANCTUARY DOMAZHYR<img
-              src="https://i.postimg.cc/9MYQycxR/4.png"
-          /></span>
-          /
-          <span
-            >BEAR SANCTUARY BELITSA<img
-              src="https://i.postimg.cc/YSprk52t/5.png"
-          /></span>
-        </h2>
-        <button id="snackbarBtn" onclick="showSnackbar()">
-          Click for more information!
-        </button>
-      </div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>March Napness 2025</title>
+  <link rel="stylesheet" href="bracketstyle.css">
+  <script> src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3.11.0/dist/email.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+</head>
+<body>
+  <div class="bracket-wrapper">
+    <div class="bracket-header">
+      <h1>MARCH NAPNESS 2025</h1>
+      <h2>
+        <span>BEAR SANCTUARY ARBESBACH<img src="https://i.postimg.cc/YCHnvbBn/1.png"></span> /
+        <span>BEAR SANCTUARY MÜRITZ<img src="https://i.postimg.cc/66ZFT7GQ/2.png"></span> /
+        <span>Arosa BEAR SANCTUARY<img src="https://i.postimg.cc/0y2hcPVR/AROSA.png"></span> /
+        <span>BEAR SANCTUARY PRISHTINA<img src="https://i.postimg.cc/FHSxVcNf/3.png"></span> /
+        <span>BEAR SANCTUARY DOMAZHYR<img src="https://i.postimg.cc/9MYQycxR/4.png"></span> /
+        <span>BEAR SANCTUARY BELITSA<img src="https://i.postimg.cc/YSprk52t/5.png"></span>
+      </h2>
+      <button id="snackbarBtn" onclick="showSnackbar()">Click for more information!</button>
     </div>
-    <div id="snackbar">
-      Hover over the sanctuary names above to see this year's competitors!
+  </div>
+  <div id="snackbar">Hover over the sanctuary names above to see this year's competitors!</div>
+
+  <div class="bracket-container" id="bracket-container">
+    <div class="round round-1">
+      <h3 class="sanctuary-title">BEAR SANCTUARY Arbesbach</h3>
+      <div class="match"><select id="arbs_match1"></select></div>
+      <div class="match"><select id="arbs_match2"></select></div>
+
+      <h3 class="sanctuary-title">BEAR SANCTUARY M&uuml;ritz</h3>
+      <div class="match"><select id="mur_match1"></select></div>
+      <div class="match"><select id="mur_match2"></select></div>
+
+      <h3 class="sanctuary-title">Arosa BEAR SANCTUARY</h3>
+      <div class="match"><select id="arosa_match1"></select></div>
+      <div class="match"><select id="arosa_match2"></select></div>
     </div>
 
-    <div class="bracket-container" id="bracket-container">
-      <div class="round round-1">
-        <h3 class="sanctuary-title">BEAR SANCTUARY Arbesbach</h3>
-        <div class="match"><select id="arbs_match1"></select></div>
-        <div class="match"><select id="arbs_match2"></select></div>
-
-        <h3 class="sanctuary-title">BEAR SANCTUARY M&uuml;ritz</h3>
-        <div class="match"><select id="mur_match1"></select></div>
-        <div class="match"><select id="mur_match2"></select></div>
-
-        <h3 class="sanctuary-title">Arosa BEAR SANCTUARY</h3>
-        <div class="match"><select id="arosa_match1"></select></div>
-        <div class="match"><select id="arosa_match2"></select></div>
-      </div>
-
-      <div class="round round-2">
-        <h3 class="round-title">Round 2</h3>
-        <div class="match"><select id="round2_arbs"></select></div>
-        <div class="match"><select id="round2_mur"></select></div>
-        <div class="match"><select id="round2_arosa"></select></div>
-      </div>
-
-      <div class="round semi-finals">
-        <h3 class="round-title">Semi Finals</h3>
-        <div class="match"><select id="semi_left"></select></div>
-      </div>
-
-      <div class="round championship">
-        <h3 class="round-title">&#127942; Championship &#127942;</h3>
-        <div class="match"><select id="championship"></select></div>
-      </div>
-
-      <div class="round semi-finals">
-        <h3 class="round-title">Semi Finals</h3>
-        <div class="match"><select id="semi_right"></select></div>
-      </div>
-
-      <div class="round round-2">
-        <h3 class="round-title">Round 2</h3>
-        <div class="match"><select id="round2_pri"></select></div>
-        <div class="match"><select id="round2_dom"></select></div>
-        <div class="match"><select id="round2_bel"></select></div>
-      </div>
-
-      <div class="round round-1">
-        <h3 class="sanctuary-title">BEAR SANCTUARY Prishtina</h3>
-        <div class="match"><select id="pri_match1"></select></div>
-        <div class="match"><select id="pri_match2"></select></div>
-
-        <h3 class="sanctuary-title">BEAR SANCTUARY Domazhyr</h3>
-        <div class="match"><select id="dom_match1"></select></div>
-        <div class="match"><select id="dom_match2"></select></div>
-
-        <h3 class="sanctuary-title">BEAR SANCTUARY Belitsa</h3>
-        <div class="match"><select id="bel_match1"></select></div>
-        <div class="match"><select id="bel_match2"></select></div>
-      </div>
+    <div class="round round-2">
+      <h3 class="round-title">Round 2</h3>
+      <div class="match"><select id="round2_arbs"></select></div>
+      <div class="match"><select id="round2_mur"></select></div>
+      <div class="match"><select id="round2_arosa"></select></div>
     </div>
 
-    <div class="bracket-buttons">
-      <button id="submitBracket">Submit Bracket</button>
-      <button id="resetBracket">Reset Bracket</button>
+    <div class="round semi-finals">
+      <h3 class="round-title">Semi Finals</h3>
+      <div class="match"><select id="semi_left"></select></div>
     </div>
 
-    <div class="bracket-image">
-      <img
-        src="https://i.postimg.cc/vmrPB411/111111.png"
-        alt="Sanctuary Logos"
-      />
+    <div class="round championship">
+      <h3 class="round-title">&#127942; Championship &#127942;</h3>
+      <div class="match"><select id="championship"></select></div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script src="script.js"></script>
+    <div class="round semi-finals">
+      <h3 class="round-title">Semi Finals</h3>
+      <div class="match"><select id="semi_right"></select></div>
+    </div>
 
-    <script>
-      document.getElementById("submitBracket").addEventListener("click", () => {
-        console.log("✅ Submit button clicked!")
-        const params = new URLSearchParams(window.location.search)
-        const name = params.get("name") || "Unknown"
-        const email = params.get("email") || ""
+    <div class="round round-2">
+      <h3 class="round-title">Round 2</h3>
+      <div class="match"><select id="round2_pri"></select></div>
+      <div class="match"><select id="round2_dom"></select></div>
+      <div class="match"><select id="round2_bel"></select></div>
+    </div>
 
-        if (!email) {
-          alert("No email found. Please register first.")
-          return
-        }
+    <div class="round round-1">
+      <h3 class="sanctuary-title">BEAR SANCTUARY Prishtina</h3>
+      <div class="match"><select id="pri_match1"></select></div>
+      <div class="match"><select id="pri_match2"></select></div>
 
-        const bracketSelections = {}
-        document.querySelectorAll("select").forEach((select) => {
-          bracketSelections[select.id] = select.value || "Not Selected"
-        })
+      <h3 class="sanctuary-title">BEAR SANCTUARY Domazhyr</h3>
+      <div class="match"><select id="dom_match1"></select></div>
+      <div class="match"><select id="dom_match2"></select></div>
 
-        const emailParams = {
-          user_name: name,
-          user_email: email,
-          bracket_data: JSON.stringify(bracketSelections, null, 2),
-          reply_to: "ksnyderfourpawsusa@gmail.com",
-        }
+      <h3 class="sanctuary-title">BEAR SANCTUARY Belitsa</h3>
+      <div class="match"><select id="bel_match1"></select></div>
+      <div class="match"><select id="bel_match2"></select></div>
+    </div>
+  </div>
 
-        emailjs
-          .send("service_87g0axd", "template_6fjqswe", emailParams)
-          .then((response) => {
-            alert(
-              "✅ Bracket submitted successfully! Your bracket will now be downloaded.",
-            )
-            console.log("✅ Success:", response)
-            captureAndDownloadBracket()
-          })
-          .catch((error) => {
-            alert("❌ Error submitting bracket. Check the console.")
-            console.error("❌ Error:", error)
-          })
-      })
+<div class="bracket-buttons">
+    <button id="submitBracket">Submit Bracket</button>
+    <button id="resetBracket" onclick="resetBracket()">Reset Bracket</button>
+</div>
 
-      function captureAndDownloadBracket() {
-        html2canvas(document.getElementById("bracket-container"), {
-          scale: 2,
-        }).then((canvas) => {
-          const link = document.createElement("a")
-          link.href = canvas.toDataURL("image/png")
-          link.download = "MarchNapness_Bracket.png"
-          link.click()
-        })
+  <div class="bracket-image">
+    <img src="https://i.postimg.cc/vmrPB411/111111.png" alt="Sanctuary Logos">
+  </div>
+
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="script.js"></script>
+
+  <script>
+    document.getElementById("submitBracket").addEventListener("click", () => {
+      console.log("✅ Submit button clicked!");
+      const params = new URLSearchParams(window.location.search);
+      const name = params.get("name") || "Unknown";
+      const email = params.get("email") || "";
+
+      if (!email) {
+        alert("No email found. Please register first.");
+        return;
       }
 
-      function showSnackbar() {
-        var x = document.getElementById("snackbar")
-        x.className = "show"
-        setTimeout(function () {
-          x.className = x.className.replace("show", "")
-        }, 6000)
-      }
-    </script>
-  </body>
+      const bracketSelections = {};
+      document.querySelectorAll("select").forEach((select) => {
+        bracketSelections[select.id] = select.value || "Not Selected";
+      });
+
+      const emailParams = {
+        user_name: name,
+        user_email: email,
+        bracket_data: JSON.stringify(bracketSelections, null, 2),
+        reply_to: "ksnyderfourpawsusa@gmail.com"
+      };
+
+      emailjs.send("service_87g0axd", "template_6fjqswe", emailParams)
+        .then((response) => {
+          alert("✅ Bracket submitted successfully! Your bracket will now be downloaded.");
+          console.log("✅ Success:", response);
+          captureAndDownloadBracket();
+        })
+        .catch((error) => {
+          alert("❌ Error submitting bracket. Check the console.");
+          console.error("❌ Error:", error);
+        });
+    });
+
+    function captureAndDownloadBracket() {
+      html2canvas(document.getElementById("bracket-container"), { scale: 2 })
+        .then((canvas) => {
+          const link = document.createElement("a");
+          link.href = canvas.toDataURL("image/png");
+          link.download = "MarchNapness_Bracket.png";
+          link.click();
+        });
+    }
+
+    function showSnackbar() {
+      var x = document.getElementById("snackbar");
+      x.className = "show";
+      setTimeout(function(){ x.className = x.className.replace("show", ""); }, 6000);
+    }
+  </script>
+</body>
 </html>
+
